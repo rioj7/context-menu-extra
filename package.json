@@ -1,0 +1,66 @@
+{
+  "name": "context-menu-extra",
+  "displayName": "Context Menu Extra",
+  "description": "Add commands to context menu's",
+  "publisher": "rioj7",
+  "license": "MIT",
+  "version": "0.1.0",
+  "engines": {"vscode": "^1.37.0"},
+  "categories": ["Other"],
+  "keywords": ["context","menu","localhost","multi-root ready"],
+  "icon": "images/icon.png",
+  "galleryBanner": {"color": "#000080", "theme": "dark"},
+  "activationEvents": [
+    "onCommand:context-menu-extra.localhostRelativePath"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "context-menu-extra.localhostRelativePath",
+        "title": "Copy Localhost Path"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "context-menu-extra.localhostRelativePath",
+          "when": "!explorerResourceIsFolder",
+          "group": "6_copypath@100"
+        }
+      ],
+      "editor/context": [
+        {
+          "group": "9_cutcopypaste@100",
+          "command": "context-menu-extra.localhostRelativePath"
+        }
+      ]
+    },
+    "configuration":{
+      "title": "Context Menu Extra",
+      "properties": {
+        "context-menu-extra.localhostPortNumber": {
+          "type": "integer",
+          "default": 8080,
+          "scope": "resource",
+          "description": "Port number of local web server"
+        },
+        "context-menu-extra.fileroot": {
+          "type": "array",
+          "default": [],
+          "scope": "resource",
+          "description": "Root directories for the sites in this workspace folder",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  },
+  "main": "./extension.js",
+  "homepage": "https://github.com/rioj7/context-menu-extra",
+  "bugs": {
+    "url": "https://github.com/rioj7/context-menu-extra/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rioj7/context-menu-extra.git"
+  }
+}
