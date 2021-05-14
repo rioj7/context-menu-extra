@@ -4,20 +4,25 @@
   "description": "Add commands to context menu's",
   "publisher": "rioj7",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {"vscode": "^1.37.0"},
   "categories": ["Other"],
   "keywords": ["context","menu","localhost","multi-root ready"],
   "icon": "images/icon.png",
   "galleryBanner": {"color": "#000080", "theme": "dark"},
   "activationEvents": [
-    "onCommand:context-menu-extra.localhostRelativePath"
+    "onCommand:context-menu-extra.localhostRelativePath",
+    "onCommand:context-menu-extra.fileName"
   ],
   "contributes": {
     "commands": [
       {
         "command": "context-menu-extra.localhostRelativePath",
         "title": "Copy Localhost Path"
+      },
+      {
+        "command": "context-menu-extra.fileName",
+        "title": "Copy File Name"
       }
     ],
     "menus": {
@@ -26,12 +31,21 @@
           "command": "context-menu-extra.localhostRelativePath",
           "when": "!explorerResourceIsFolder",
           "group": "6_copypath@100"
+        },
+        {
+          "command": "context-menu-extra.fileName",
+          "when": "!explorerResourceIsFolder",
+          "group": "6_copypath@100"
         }
       ],
       "editor/context": [
         {
           "group": "9_cutcopypaste@100",
           "command": "context-menu-extra.localhostRelativePath"
+        },
+        {
+          "group": "9_cutcopypaste@100",
+          "command": "context-menu-extra.fileName"
         }
       ]
     },

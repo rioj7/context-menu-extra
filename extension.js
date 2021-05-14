@@ -1,4 +1,5 @@
 const vscode = require('vscode');
+const path = require('path');
 
 function activate(context) {
   const errorMessage = (msg, noObject) => { vscode.window.showErrorMessage(msg); return noObject ? noObject : "Unknown";};
@@ -9,15 +10,21 @@ function activate(context) {
     let folder = vscode.workspace.getWorkspaceFolder(uri);
     return folder ? action(folder) : fileNotInFolderError(noWorkSpace);
   };
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand('context-menu-extra.localhostRelativePath', uri => {
+  const contextURIToClipboard = (clipboardContent) => {
+    const command = uri => {
       if (uri === undefined) {
         const editor = vscode.window.activeTextEditor;
         if (!editor) { return errorMessage('No editor'); }
         uri = editor.document.uri;
       }
-      activeWorkspaceFolder(uri, workspaceFolder => {
+      vscode.env.clipboard.writeText(clipboardContent(uri)).then(v=>v, v=>null);
+    };
+    return command;
+  };
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('context-menu-extra.localhostRelativePath', contextURIToClipboard( uri => {
+      return activeWorkspaceFolder(uri, workspaceFolder => {
         var config = vscode.workspace.getConfiguration('context-menu-extra', workspaceFolder.uri);
         var portNumber = config.get('localhostPortNumber');
         var fileroot = config.get('fileroot');
@@ -29,9 +36,12 @@ function activate(context) {
             break;
           }
         }
-        vscode.env.clipboard.writeText(`http://localhost:${portNumber}/${relativePath.substring(filerootFolder.length)}`).then(v=>v, v=>null);
-      })
-    })
+        return `http://localhost:${portNumber}/${relativePath.substring(filerootFolder.length)}`;
+      });
+    }))
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('context-menu-extra.fileName', contextURIToClipboard( uri => path.basename(uri.path) ) )
   );
 };
 

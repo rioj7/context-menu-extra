@@ -5,6 +5,7 @@ Add commands to the context menu of the file explorer and editor.
 The commands:
 
 * `context-menu-extra.localhostRelativePath` : Add a `Copy Localhost Path` to the context menu. It fills the clipboard with the text `http://localhost:<portnumber>/<relativePath>`. It uses the configuration variables: `context-menu-extra.localhostPortNumber` and `context-menu-extra.fileroot`. The `<relativePath>` is the path relative to the root directory of the website.
+* `context-menu-extra.fileName` : Add a `Copy File Name` to the context menu. It fills the clipboard with the file name.
 
 The configuration:
 
