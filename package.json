@@ -4,15 +4,16 @@
   "description": "Add commands to context menu's",
   "publisher": "rioj7",
   "license": "MIT",
-  "version": "0.2.0",
-  "engines": {"vscode": "^1.37.0"},
+  "version": "0.3.0",
+  "engines": {"vscode": "^1.55.0"},
   "categories": ["Other"],
-  "keywords": ["context","menu","localhost","multi-root ready"],
+  "keywords": ["context","menu","localhost","multi-root ready","relative","path"],
   "icon": "images/icon.png",
   "galleryBanner": {"color": "#000080", "theme": "dark"},
   "activationEvents": [
     "onCommand:context-menu-extra.localhostRelativePath",
-    "onCommand:context-menu-extra.fileName"
+    "onCommand:context-menu-extra.fileName",
+    "onCommand:context-menu-extra.activeEditorRelativePath"
   ],
   "contributes": {
     "commands": [
@@ -23,10 +24,18 @@
       {
         "command": "context-menu-extra.fileName",
         "title": "Copy File Name"
+      },
+      {
+        "command": "context-menu-extra.activeEditorRelativePath",
+        "title": "Copy Path relative to Active Editor"
       }
     ],
     "menus": {
       "explorer/context": [
+        {
+          "command": "context-menu-extra.activeEditorRelativePath",
+          "group": "6_copypath@100"
+        },
         {
           "command": "context-menu-extra.localhostRelativePath",
           "when": "!explorerResourceIsFolder",
@@ -64,11 +73,18 @@
           "scope": "resource",
           "description": "Root directories for the sites in this workspace folder",
           "items": { "type": "string" }
+        },
+        "context-menu-extra.singleDot": {
+          "type": "boolean",
+          "default": true,
+          "scope": "resource",
+          "description": "Add a single dot (\"./\") to path relative to editor if needed"
         }
       }
     }
   },
   "main": "./extension.js",
+  "browser": "./extension.js",
   "homepage": "https://github.com/rioj7/context-menu-extra",
   "bugs": {
     "url": "https://github.com/rioj7/context-menu-extra/issues"

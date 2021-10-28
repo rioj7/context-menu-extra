@@ -6,11 +6,13 @@ The commands:
 
 * `context-menu-extra.localhostRelativePath` : Add a `Copy Localhost Path` to the context menu. It fills the clipboard with the text `http://localhost:<portnumber>/<relativePath>`. It uses the configuration variables: `context-menu-extra.localhostPortNumber` and `context-menu-extra.fileroot`. The `<relativePath>` is the path relative to the root directory of the website.
 * `context-menu-extra.fileName` : Add a `Copy File Name` to the context menu. It fills the clipboard with the file name.
+* `context-menu-extra.activeEditorRelativePath` : Add a `Copy Path relative to Active Editor` to the context menu of the file explorer. It fills the clipboard with the path of the context-clicked entry relative to the path of the active editor. Do not select the other file but context/right click the other file. It uses the configuration variable: `context-menu-extra.singleDot`
 
 The configuration:
 
 * `context-menu-extra.localhostPortNumber` : The portnumber of the local webserver. (default: `8080`)
 * `context-menu-extra.fileroot` : see the section [file root](#context-menu-extra.fileroot)
+* `context-menu-extra.singleDot` : Add a single dot (`./`) to path relative to editor if needed
 
 
 ## `context-menu-extra.fileroot`
