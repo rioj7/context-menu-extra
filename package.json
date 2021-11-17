@@ -4,8 +4,8 @@
   "description": "Add commands to context menu's",
   "publisher": "rioj7",
   "license": "MIT",
-  "version": "0.3.0",
-  "engines": {"vscode": "^1.55.0"},
+  "version": "0.4.0",
+  "engines": {"vscode": "^1.62.0"},
   "categories": ["Other"],
   "keywords": ["context","menu","localhost","multi-root ready","relative","path"],
   "icon": "images/icon.png",
@@ -13,7 +13,8 @@
   "activationEvents": [
     "onCommand:context-menu-extra.localhostRelativePath",
     "onCommand:context-menu-extra.fileName",
-    "onCommand:context-menu-extra.activeEditorRelativePath"
+    "onCommand:context-menu-extra.activeEditorRelativePath",
+    "onCommand:context-menu-extra.notebookClearCell"
   ],
   "contributes": {
     "commands": [
@@ -28,6 +29,11 @@
       {
         "command": "context-menu-extra.activeEditorRelativePath",
         "title": "Copy Path relative to Active Editor"
+      },
+      {
+        "command": "context-menu-extra.notebookClearCell",
+        "title": "Clear Output of Cell",
+        "icon": "$(clear-all)"
       }
     ],
     "menus": {
@@ -55,6 +61,13 @@
         {
           "group": "9_cutcopypaste@100",
           "command": "context-menu-extra.fileName"
+        }
+      ],
+      "notebook/cell/title": [
+        {
+          "command": "context-menu-extra.notebookClearCell",
+          "when": "notebookType == jupyter-notebook && jupyter.ispythonnotebook && notebookCellType == code && notebookCellHasOutputs && isWorkspaceTrusted",
+          "group": "inline/cell@0"
         }
       ]
     },

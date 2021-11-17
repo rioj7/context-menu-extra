@@ -76,6 +76,9 @@ function activate(context) {
         })
       ) ) )
   );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('context-menu-extra.notebookClearCell', () => vscode.commands.executeCommand('notebook.cell.clearOutputs') )
+  );
 };
 
 function deactivate() {}

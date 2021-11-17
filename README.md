@@ -7,6 +7,7 @@ The commands:
 * `context-menu-extra.localhostRelativePath` : Add a `Copy Localhost Path` to the context menu. It fills the clipboard with the text `http://localhost:<portnumber>/<relativePath>`. It uses the configuration variables: `context-menu-extra.localhostPortNumber` and `context-menu-extra.fileroot`. The `<relativePath>` is the path relative to the root directory of the website.
 * `context-menu-extra.fileName` : Add a `Copy File Name` to the context menu. It fills the clipboard with the file name.
 * `context-menu-extra.activeEditorRelativePath` : Add a `Copy Path relative to Active Editor` to the context menu of the file explorer. It fills the clipboard with the path of the context-clicked entry relative to the path of the active editor. Do not select the other file but context/right click the other file. It uses the configuration variable: `context-menu-extra.singleDot`
+* `context-menu-extra.notebookClearCell` : Add a `Clear Output of Cell` toolbar item to a Python Notebook Cell if it has output.
 
 The configuration:
 
@@ -51,3 +52,8 @@ and you have opened `/home/myname/WebProjects` as a folder or part of a Multi Ro
 You can use the Settings GUI to modify this setting for any folder of the (MR) Workspace.
 
 It does not make sence to use `context-menu-extra.fileroot` in the global user setting.
+
+# Release Notes
+
+### v0.4.0
+* `context-menu-extra.notebookClearCell` toolbar item to clear individual cell output
