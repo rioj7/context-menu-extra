@@ -2,19 +2,21 @@
 
 Add commands to the context menu of the file explorer and editor.
 
+Add buttons to the Python Notebook Toolbars (see configuration)
+
 The commands:
 
 * `context-menu-extra.localhostRelativePath` : Add a `Copy Localhost Path` to the context menu. It fills the clipboard with the text `http://localhost:<portnumber>/<relativePath>`. It uses the configuration variables: `context-menu-extra.localhostPortNumber` and `context-menu-extra.fileroot`. The `<relativePath>` is the path relative to the root directory of the website.
 * `context-menu-extra.fileName` : Add a `Copy File Name` to the context menu. It fills the clipboard with the file name.
 * `context-menu-extra.activeEditorRelativePath` : Add a `Copy Path relative to Active Editor` to the context menu of the file explorer. It fills the clipboard with the path of the context-clicked entry relative to the path of the active editor. Do not select the other file but context/right click the other file. It uses the configuration variable: `context-menu-extra.singleDot`
-* `context-menu-extra.notebookClearCell` : Add a `Clear Output of Cell` toolbar item to a Python Notebook Cell if it has output.
 
 The configuration:
 
 * `context-menu-extra.localhostPortNumber` : The portnumber of the local webserver. (default: `8080`)
 * `context-menu-extra.fileroot` : see the section [file root](#context-menu-extra.fileroot)
 * `context-menu-extra.singleDot` : Add a single dot (`./`) to path relative to editor if needed
-
+* `context-menu-extra.notebookClearCellOutputInTopToolbar` : Show "Clear Output of Cell" button in Python Notebook Top Toolbar
+* `context-menu-extra.notebookClearCellOutputInCellToolbar` : Show "Clear Output of Cell" button in Python Notebook Cell Toolbar if it has output
 
 ## `context-menu-extra.fileroot`
 
@@ -55,5 +57,9 @@ It does not make sence to use `context-menu-extra.fileroot` in the global user s
 
 # Release Notes
 
+### v0.5.0
+* "Clear Output of Cell" button in Notebook Top Toolbar
+* Show "Clear Output of Cell" button if configuration item is set to true
+
 ### v0.4.0
-* `context-menu-extra.notebookClearCell` toolbar item to clear individual cell output
+* Python Notebook toolbar item to clear individual cell output

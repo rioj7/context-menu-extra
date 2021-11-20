@@ -4,7 +4,7 @@
   "description": "Add commands to context menu's",
   "publisher": "rioj7",
   "license": "MIT",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "engines": {"vscode": "^1.62.0"},
   "categories": ["Other"],
   "keywords": ["context","menu","localhost","multi-root ready","relative","path"],
@@ -20,20 +20,27 @@
     "commands": [
       {
         "command": "context-menu-extra.localhostRelativePath",
-        "title": "Copy Localhost Path"
+        "title": "Copy Localhost Path",
+        "category": "Context Menu Extra"
       },
       {
         "command": "context-menu-extra.fileName",
-        "title": "Copy File Name"
+        "title": "Copy File Name",
+        "category": "Context Menu Extra"
       },
       {
         "command": "context-menu-extra.activeEditorRelativePath",
-        "title": "Copy Path relative to Active Editor"
+        "title": "Copy Path relative to Active Editor",
+        "category": "Context Menu Extra"
       },
       {
         "command": "context-menu-extra.notebookClearCell",
         "title": "Clear Output of Cell",
-        "icon": "$(clear-all)"
+        "category": "Context Menu Extra",
+        "icon": {
+          "light": "resources/light/clear-output-cell.svg",
+          "dark": "resources/dark/clear-output-cell.svg"
+        }
       }
     ],
     "menus": {
@@ -66,8 +73,16 @@
       "notebook/cell/title": [
         {
           "command": "context-menu-extra.notebookClearCell",
-          "when": "notebookType == jupyter-notebook && jupyter.ispythonnotebook && notebookCellType == code && notebookCellHasOutputs && isWorkspaceTrusted",
+          "when": "notebookType == jupyter-notebook && jupyter.ispythonnotebook && notebookCellType == code && notebookCellHasOutputs && isWorkspaceTrusted && config.context-menu-extra.notebookClearCellOutputInCellToolbar",
           "group": "inline/cell@0"
+        }
+      ],
+      "notebook/toolbar": [
+        {
+          "command": "context-menu-extra.notebookClearCell",
+          "when": "notebookType == jupyter-notebook && jupyter.ispythonnotebook && isWorkspaceTrusted && config.context-menu-extra.notebookClearCellOutputInTopToolbar",
+          "group": "navigation/execute@1",
+          "enablement": "notebookCellType == code && notebookCellHasOutputs"
         }
       ]
     },
@@ -92,6 +107,18 @@
           "default": true,
           "scope": "resource",
           "description": "Add a single dot (\"./\") to path relative to editor if needed"
+        },
+        "context-menu-extra.notebookClearCellOutputInTopToolbar": {
+          "type": "boolean",
+          "default": false,
+          "scope": "resource",
+          "description": "Show \"Clear Output of Cell\" button in Notebook Top Toolbar"
+        },
+        "context-menu-extra.notebookClearCellOutputInCellToolbar": {
+          "type": "boolean",
+          "default": true,
+          "scope": "resource",
+          "description": "Show \"Clear Output of Cell\" button in Notebook Cell Toolbar if it has output"
         }
       }
     }
